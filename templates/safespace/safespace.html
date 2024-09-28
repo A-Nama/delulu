@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delulu - Mood Selection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <div class="mood-container">
+        <!-- Add a background image placeholder -->
+        <div class="bg-image"></div>
+
+        <div class="mood-grid">
+            <div class="mood-option">
+                <a href="/chat?mood=high_energy_pleasant">
+                    <div class="mood-box">HIGH ENERGY PLEASANT</div>
+                </a>
+            </div>
+            <div class="mood-option">
+                <a href="/chat?mood=high_energy_unpleasant">
+                    <div class="mood-box">HIGH ENERGY UNPLEASANT</div>
+                </a>
+            </div>
+            <div class="mood-option">
+                <a href="/chat?mood=low_energy_pleasant">
+                    <div class="mood-box">LOW ENERGY PLEASANT</div>
+                </a>
+            </div>
+            <div class="mood-option">
+                <a href="/chat?mood=low_energy_unpleasant">
+                    <div class="mood-box">LOW ENERGY UNPLEASANT</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

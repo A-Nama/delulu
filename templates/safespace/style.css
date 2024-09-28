@@ -1,0 +1,31 @@
+.mood-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for the grid of mood options */
+.mood-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    text-align: center;
+}
+
+.mood-box {
+    width: 200px;
+    height: 200px;
+    border: 3px solid #00bcd4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    color: #333;
+    transition: transform 0.2s ease;
+}
+
+.mood-box:hover {
+    transform: scale(1.05);
+}

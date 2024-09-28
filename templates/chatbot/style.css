@@ -1,0 +1,36 @@
+/* Chatbot page */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 20px;
+}
+
+#chatbox {
+    flex: 1;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: scroll;
+}
+
+#user-input {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+#send-button {
+    padding: 10px 20px;
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#send-button:hover {
+    background-color: #0097a7;
+}

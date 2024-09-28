@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delulu - Mental Health Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <div class="home-container">
+        <!-- Add a background image placeholder -->
+        <div class="bg-image"></div>
+
+        <!-- Delulu Logo -->
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Delulu Logo">
+        </div>
+
+        <!-- Text slogan -->
+        <div class="slogan">
+            <h1 id="animated-text">Reality is what you make it - Delulu helps you make it better</h1>
+        </div>
+
+        <!-- Start button -->
+        <div class="start-button">
+            <a href="/mood" class="start-link">Start</a>
+        </div>
+    </div>
+
+</body>
+</html>
