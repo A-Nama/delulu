@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delulu - Chatbot</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <script src="{{ url_for('static', filename='js/chatbot.js') }}" defer></script>
+    <link rel="stylesheet" href="/templates/chatbot/style.css">
+    <title>Chatbot</title>
+    <style>
+        body {
+            background-image: url("/static/images/{{ safespace }}.jpg"); /* Dynamically set background */
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 <body>
-
     <div class="chat-container">
-        <!-- Chat UI goes here -->
-        <div id="chatbox">
-            <!-- Chat messages will dynamically load here -->
+        <h1>Chatbot</h1>
+        <div class="chatbox" id="chatbox">
+            <div id="messages"></div>
+            <form id="chat-form" method="POST" action="/chatbot/{{safespace}}">
+                <input type="text" id="user-message" name="message" placeholder="Type your message here...">
+                <button type="submit">Send</button>
+            </form>
         </div>
-        <input type="text" id="user-input" placeholder="Type your message...">
-        <button id="send-button">Send</button>
     </div>
-
+    <script src="/templates/chatbot/chatbot.js"></script>
 </body>
 </html>

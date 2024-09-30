@@ -1,60 +1,60 @@
-/* Style for the home page container */
-.home-container {
-    position: relative;
-    height: 100vh;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Copperplate, Papyrus, fantasy;
+    background-image: url('/static/images/homepage.jpg');
+    background-size: cover;
+    color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     text-align: center;
 }
 
-/* Placeholder for background image */
-.bg-image {
-    background-image: url('../images/bg-image.png'); /* Replace bg-image.png with your background */
-    background-size: cover;
-    background-position: center;
+header .logo {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    filter: blur(5px); /* Adds a slight blur effect */
+    top: 20px; /* Keeps the logo 20px from the top */
+    right: 20px; /* Moves the logo to the right */
+    width: 30%; /* Adjust the size as needed (you can make it smaller or larger) */
+    max-width: 150px; /* Optional: set a maximum width to keep it from getting too big */
+    height: auto; /* Maintains the aspect ratio */
+    z-index: 10; /* Ensures the logo appears above other elements */
 }
 
-/* Logo */
-.logo img {
-    width: 150px;
-    margin-bottom: 30px;
-}
 
-/* Text slogan animation */
-#animated-text {
-    font-family: 'Arial', sans-serif;
+.hero h1 {
     font-size: 3rem;
-    color: #333;
-    opacity: 0;
-    animation: textFadeIn 3s ease-in-out forwards;
+    animation: sparkle 3s ease-in-out infinite;
+    transition: 0.3s ease;
 }
 
-/* Start button */
-.start-button .start-link {
+
+.second-section {
+    margin-top: 50px;
+}
+
+.second-section h2 {
+    font-size: 2.5rem;
+}
+
+.start-btn {
     padding: 15px 30px;
-    background-color: #ffd700;
-    color: #000;
+    background-color: #009d9dc4;
+    color: white;
     font-size: 1.5rem;
     text-decoration: none;
     border-radius: 10px;
+    margin-top: 30px;
+    display: inline-block;
     transition: background-color 0.3s ease;
 }
 
-.start-button .start-link:hover {
-    background-color: #f1c40f;
-}
-
-/* Keyframes for the text animation */
-@keyframes textFadeIn {
-    0% { opacity: 0; transform: translateY(-20px); }
-    100% { opacity: 1; transform: translateY(0); }
+.start-btn:hover {
+    background-color: #e64a19;
 }

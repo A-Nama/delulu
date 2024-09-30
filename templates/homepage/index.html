@@ -3,30 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delulu - Mental Health Chatbot</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Delulu - Homepage</title>
+    <link rel="stylesheet" href="/templates/homepage/style.css">
 </head>
 <body>
+    <div class="container">
+        <header>
+            <img src="/static/images/logo.png" alt="Delulu Logo" class="logo">
+        </header>
 
-    <div class="home-container">
-        <!-- Add a background image placeholder -->
-        <div class="bg-image"></div>
+        <section class="hero">
+            <h1>Reality is what you make it - <br> Delulu helps you make it better</h1>
+        </section>
 
-        <!-- Delulu Logo -->
-        <div class="logo">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Delulu Logo">
-        </div>
-
-        <!-- Text slogan -->
-        <div class="slogan">
-            <h1 id="animated-text">Reality is what you make it - Delulu helps you make it better</h1>
-        </div>
-
-        <!-- Start button -->
-        <div class="start-button">
-            <a href="/mood" class="start-link">Start</a>
-        </div>
+        <section class="second-section">
+            <a href="/templates/safespace/safespace.html" class="start-btn">Let's chat!</a>
+        </section>
     </div>
-
 </body>
 </html>

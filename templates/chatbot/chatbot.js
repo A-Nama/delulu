@@ -1,29 +1,31 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const sendButton = document.getElementById('send-button');
-    const chatbox = document.getElementById('chatbox');
-    const userInput = document.getElementById('user-input');
+document.addEventListener('DOMContentLoaded', function () {
+    const chatForm = document.getElementById('chat-form');
+    const userMessage = document.getElementById('user-message');
+    const messagesDiv = document.getElementById('messages');
 
-    sendButton.addEventListener('click', sendMessage);
+    chatForm.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-    function sendMessage() {
-        const message = userInput.value.trim();
-        if (message) {
-            addMessageToChat('user', message);
-            getChatbotResponse(message);
-            userInput.value = ''; // Clear input field
-        }
-    }
+        const messageText = userMessage.value;
+        if (messageText === '') return;
 
-    function addMessageToChat(sender, message) {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add(sender);
-        messageElement.innerText = message;
-        chatbox.appendChild(messageElement);
-        chatbox.scrollTop = chatbox.scrollHeight; // Scroll to bottom
-    }
+        // Add user's message to chatbox
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.textContent = "You: " + messageText;
+        messagesDiv.appendChild(userMessageDiv);
+        userMessage.value = '';
 
-    function getChatbotResponse(userMessage) {
-        const response = 'This is a placeholder response!'; // Replace with AI logic
-        setTimeout(() => addMessageToChat('bot', response), 1000); // Simulate delay
-    }
+        // Send message to chatbot and get response
+        fetch(chatForm.action, {
+            method: 'POST',
+            body: new URLSearchParams(new FormData(chatForm)),
+        })
+        .then(response => response.text())
+        .then(botResponse => {
+            // Add bot's message to chatbox
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.textContent = "Bot: " + botResponse;
+            messagesDiv.appendChild(botMessageDiv);
+        });
+    });
 });
