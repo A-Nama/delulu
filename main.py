@@ -1,41 +1,74 @@
 import streamlit as st
+from streamlit import session_state as st_session
 from app.chatbot import get_chatbot_response
 from app.safespaces import get_safespaces
 
-# Home Page
-st.set_page_config(page_title="Delulu", layout="centered")
+# Set page configuration
+st.set_page_config(page_title="Delulu - Mental Health Chatbot", layout="wide")
 
-# Homepage logic
-if 'page' not in st.session_state:
-    st.session_state['page'] = 'home'
+# Initialize session state variables
+if 'selected_safespace' not in st_session:
+    st_session.selected_safespace = None
 
-def render_homepage():
-    st.image("static/images/logo.png", width=150)
-    st.title("Reality is what you make it - Delulu helps you make it better")
-    if st.button("Let's chat!"):
-        st.session_state['page'] = 'safespace'
+if 'show_safespaces' not in st_session:
+    st_session.show_safespaces = False
 
-def render_safespace():
-    st.image("static/images/logo.png", width=150)
-    st.header("Select Your Safespace")
+# Function to render background
+def set_background(image_url):
+    st.markdown(
+        f"""
+        <style>
+        .main {{
+            background-image: url('{image_url}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Render homepage
+if not st_session.show_safespaces and not st_session.selected_safespace:
+    set_background('https://c4.wallpaperflare.com/wallpaper/826/47/788/studio-ghibli-hayao-miyazaki-wallpaper-preview.jpg')
+    
+    # Logo
+    st.image('https://i.imgur.com/tgc5SpE.png', width=100, use_column_width=False) 
+
+    # Hero section text
+    st.markdown("<h1 style='font-size: 48px;'>Reality is what you make it - Delulu helps you make it better.</h1>", unsafe_allow_html=True)
+
+    # Button to start the chat
+    if st.button("Let's chat"):
+        st_session.show_safespaces = True  # Set the flag to show safespaces
+
+# Safespace selection
+elif st_session.show_safespaces:
+    st.markdown("<h2>Select your safespace:</h2>", unsafe_allow_html=True)
+    
     safespaces = get_safespaces()
-    selected_safespace = st.selectbox("Choose a Safespace", [s['name'] for s in safespaces])
-    if st.button("Go to Chat"):
-        st.session_state['selected_safespace'] = selected_safespace
-        st.session_state['page'] = 'chatbot'
+    cols = st.columns(3)  # Create 3 columns for images
+    for i, space in enumerate(safespaces):
+        with cols[i % 3]:
+            if st.button(space["name"], key=space["name"]):
+                st_session.selected_safespace = space["url"]  # Save selected image URL
+                st_session.show_safespaces = False  # Hide safespaces selection
+                st.experimental_rerun()  # Rerun to update the page
 
-def render_chatbot():
-    st.image("static/images/logo.png", width=150)
-    st.header(f"Chatbot - {st.session_state['selected_safespace']}")
-    user_message = st.text_input("Your Message:")
+            st.image(space["url"], width=200)  # Display image
+
+# Chatbot interface
+elif st_session.selected_safespace:
+    set_background(st_session.selected_safespace)  # Set the selected safespace as background
+    
+    # Top-left logo on chatbot page
+    st.image('https://i.imgur.com/tgc5SpE.png', width=100, use_column_width=False)  
+    st.header("Chat with our AI Chatbot")
+    
+    user_input = st.text_input("Type your message here...")
     if st.button("Send"):
-        bot_response = get_chatbot_response(user_message)
-        st.text_area("Delulu Bot", value=bot_response, height=200)
-
-# Page routing
-if st.session_state['page'] == 'home':
-    render_homepage()
-elif st.session_state['page'] == 'safespace':
-    render_safespace()
-elif st.session_state['page'] == 'chatbot':
-    render_chatbot()
+        response = get_chatbot_response(user_input)
+        st.markdown(f"<p style='color: white;'>Chatbot: {response}</p>", unsafe_allow_html=True)
