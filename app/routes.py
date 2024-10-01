@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+'''from flask import Blueprint, render_template, request, redirect, url_for
 from .chatbot import get_chatbot_response
 from .safespaces import get_safespaces
 import urllib.parse
@@ -28,4 +28,4 @@ def chatbot(safespace):
         user_message = request.form['message']
         bot_response = get_chatbot_response(user_message)
         return render_template('chatbot/chatbot.html', safespace=safespace, user_message=user_message, bot_response=bot_response)
-    return render_template('chatbot/chatbot.html', safespace=safespace)
+    return render_template('chatbot/chatbot.html', safespace=safespace)'''
